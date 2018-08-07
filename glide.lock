@@ -1,0 +1,21 @@
+hash: 5e96e18a5f0c90de3ba7a22b08e1bc5f3afce4a8412d72e979a80a58b949a282
+updated: 2018-08-03T18:23:17.092454+08:00
+imports:
+- name: github.com/mytokenio/go_sdk
+  version: 7e128b9fb372e5a2464b8b0b8ef9c0cd808df342
+  subpackages:
+  - log
+- name: github.com/rs/xid
+  version: 2c7e97ce663ff82c49656bca3048df0fdd83c5f9
+- name: github.com/Sirupsen/logrus
+  version: 3e01752db0189b9157070a0e1668a620f9a85da2
+- name: golang.org/x/crypto
+  version: 613d6eafa307c6881a737a3c35c0e312e8d3a8c5
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: 78d5f264b493f125018180c204871ecf58a2dce1
+  subpackages:
+  - unix
+  - windows
+testImports: []

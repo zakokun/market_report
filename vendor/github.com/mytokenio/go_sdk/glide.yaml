@@ -1,0 +1,6 @@
+package: mytoken/go_sdk
+import:
+- package: github.com/Sirupsen/logrus
+  version: ^1.0.5
+- package: github.com/rs/xid
+  version: ~1.2.0
