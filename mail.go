@@ -48,6 +48,8 @@ func sendMail(list []*A) {
 	m := gomail.NewMessage()
 	m.SetHeader("From", "me@wen.moe")
 	m.SetHeader("To", "me@wen.moe", "li.1328@osu.edu")
+	//m.SetHeader("To", "me@wen.moe")
+
 	m.SetHeader("Subject", time.Now().Add(-time.Hour*24).Format("2006-01-02")+"每日行情")
 	m.SetBody("text/html", fmt.Sprintf(mailContent, content))
 	if err := MailClient.DialAndSend(m); err != nil {
@@ -62,10 +64,10 @@ func initMessage(list []*A) string {
 	)
 
 	for _, l := range list {
-		if ((l.Sell-l.Buy)*l.Vol)/totalPrice > 0.04 {
+		if ((l.SellPer-l.BuyPer)*l.Vol)/totalPrice > 0.04 {
 			isSuccess = "color:green"
 		}
-		ss := fmt.Sprintf(mailTable, isSuccess, l.TS.Format("2006-01-02  15:04"), l.Buy, l.Sell, (l.Sell-l.Buy)*l.Vol, ((l.Sell-l.Buy)*l.Vol)/totalPrice*100)
+		ss := fmt.Sprintf(mailTable, isSuccess, l.TS.Format("2006-01-02  15:04"), l.BuyPer, l.SellPer, l.SellAll-totalPrice, (l.SellAll-totalPrice)/totalPrice*100)
 		bb.WriteString(ss)
 	}
 	return bb.String()
