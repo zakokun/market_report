@@ -66,6 +66,8 @@ func initMessage(list []*A) string {
 	for _, l := range list {
 		if ((l.SellPer-l.BuyPer)*l.Vol)/totalPrice > 0.04 {
 			isSuccess = "color:green"
+		} else {
+			isSuccess = ""
 		}
 		ss := fmt.Sprintf(mailTable, isSuccess, l.TS.Format("2006-01-02  15:04"), l.BuyPer, l.SellPer, l.SellAll-totalPrice, (l.SellAll-totalPrice)/totalPrice*100)
 		bb.WriteString(ss)
