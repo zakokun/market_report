@@ -40,7 +40,7 @@ func main() {
 		}
 		a := new(A)
 		a.TS = time.Now()
-		time.Sleep(time.Minute * 5)
+		time.Sleep(time.Second * 3)
 		kk, err = reqKra()
 		if err != nil || len(kk.Error) > 0 || len(kk.Result.XXBTZCAD.Asks) <= 0 {
 			log.Printf("reqKra() err(%v)", err)
@@ -56,6 +56,9 @@ func main() {
 		a.SellAll = countQuad(dd, a.Vol)
 		a.SellPer = a.SellAll / a.Vol
 		dayList = append(dayList, a)
+		if len(dayList) > 2 {
+			sendMail(dayList)
+		}
 		//todo 报警邮件
 	}
 }

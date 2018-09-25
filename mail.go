@@ -1,13 +1,11 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
+	"log"
 	"time"
 
-	"bytes"
-
-	"fmt"
-
-	"github.com/mytokenio/go_sdk/log"
 	"gopkg.in/gomail.v2"
 )
 
@@ -44,16 +42,16 @@ var (
 
 func sendMail(list []*A) {
 	content := initMessage(list)
-	MailClient = gomail.NewDialer("smtp.exmail.qq.com", 465, "me@wen.moe", "RMzsBXFYMmw79j")
+	MailClient = gomail.NewDialer("smtp.ym.163.com", 465, "me@wen.moe", "zhw5701879")
 	m := gomail.NewMessage()
 	m.SetHeader("From", "me@wen.moe")
-	m.SetHeader("To", "me@wen.moe", "li.1328@osu.edu")
-	//m.SetHeader("To", "me@wen.moe")
+	//m.SetHeader("To", "me@wen.moe", "li.1328@osu.edu")
+	m.SetHeader("To", "me@wen.moe")
 
 	m.SetHeader("Subject", time.Now().Add(-time.Hour*24).Format("2006-01-02")+"每日行情")
 	m.SetBody("text/html", fmt.Sprintf(mailContent, content))
 	if err := MailClient.DialAndSend(m); err != nil {
-		log.Error(" MailClient.DialAndSend() err(%v)", err)
+		log.Printf(" MailClient.DialAndSend() err(%v)", err)
 	}
 }
 
